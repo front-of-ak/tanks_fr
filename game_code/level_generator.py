@@ -40,3 +40,6 @@ def generate(level_name):
     with open(os.path.join('data', 'level_maps', level_name), mode='wt', encoding='utf-8') as f:
         for i in level_map:
             f.write(''.join(i) + '\n')
+    return level_name
+
+

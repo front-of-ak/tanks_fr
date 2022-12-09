@@ -1,7 +1,8 @@
 # version v1.0.0
 import pygame
 
-from universal_constants import WIDTH, HEIGHT
+from game_code import level_generator
+from universal_constants import WIDTH, HEIGHT, LEVEL_NAME
 
 pygame.init()
 
@@ -11,8 +12,7 @@ clock = pygame.time.Clock()
 
 # from sound_init import screens_sound
 from game_level_class import GameLevel
-from screens import StartScreen, WonScreen, MiddleScreen, LoseScreen, EndScreen
-from level_attributes import LEVELS  # LEVEL_MUSIC
+from screens import StartScreen, WonScreen, LoseScreen
 
 MAX_LEVEL = 5
 
@@ -30,33 +30,19 @@ class Game:
         self.won_screen_run = False
         self.lost_screen_run = False
         self.start_screen_run = True
-        self.current_level = 0
         self.screen_process(StartScreen)
 
     def screen_process(self, cur_screen):
         next_screen = None
         if cur_screen == WonScreen:
             cur_screen = WonScreen(self.screen, self.clock)
-            next_screen = MiddleScreen
-            self.current_level += 1
+            next_screen = StartScreen
         elif cur_screen == LoseScreen:
             cur_screen = LoseScreen(self.screen, self.clock)
             next_screen = StartScreen
-            self.current_level = 0
         elif cur_screen == StartScreen:
-            next_screen = MiddleScreen
             cur_screen = StartScreen(self.screen, self.clock)
-        elif cur_screen == MiddleScreen:
-            cur_screen = MiddleScreen(self.screen, self.clock,
-                                      *LEVELS[self.current_level][0])
             next_screen = GameLevel
-        elif cur_screen == EndScreen:
-            cur_screen = EndScreen(self.screen, self.clock)
-            next_screen = StartScreen
-
-        if self.current_level == MAX_LEVEL:
-            next_screen = EndScreen
-            self.current_level = 0
 
         while cur_screen.is_running():
             pass
@@ -68,7 +54,7 @@ class Game:
             self.screen_process(next_screen)
 
     def level_process(self):
-        game_level = GameLevel(self.screen, self.clock, LEVELS[self.current_level][1])
+        game_level = GameLevel(self.screen, self.clock, level_generator.generate(LEVEL_NAME))
         # self.prev_music = LEVEL_MUSIC[self.current_level]
         player_won = None
         while player_won is None:

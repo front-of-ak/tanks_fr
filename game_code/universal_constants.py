@@ -15,3 +15,6 @@ DELTA_DISTANCE_FOR_TANK = 3
 FPS = 60
 BOOM_FPS = 60
 NUM_OF_FRAMES = 360 // DELTA_ANGLE
+
+# level generation
+LEVEL_NAME = "generated.txt"

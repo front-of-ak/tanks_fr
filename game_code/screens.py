@@ -1,10 +1,12 @@
+import os
+
 import pygame
 import pygame_widgets
 
 from pygame_widgets.button import Button
 from different_funcs import load_image, terminate
 # from sound_init import screens_sound
-from universal_constants import WIDTH, HEIGHT, FPS
+from universal_constants import WIDTH, HEIGHT, FPS, LEVEL_NAME
 
 # text parameters
 MAIN_TEXT_FONT_SIZE = 32
@@ -49,6 +51,7 @@ class Screen:
         while self.running:
             for ev in pygame.event.get():
                 if ev.type == pygame.QUIT:
+                    os.remove(os.path.join('data', 'level_maps', LEVEL_NAME))
                     terminate()
             events = pygame.event.get()
             pygame_widgets.update(events)
