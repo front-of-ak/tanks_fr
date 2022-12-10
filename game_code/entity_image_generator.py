@@ -39,4 +39,4 @@ def make_sprite_sheet(name, number, k, side, output_name):
     return height, width
 
 
-make_sprite_sheet('data/images/mono_images/AP.png', 180, 1.3, 40, 'images/bullet_sheet.png')
+make_sprite_sheet('data/images/mono_images/AP.png', 180, 2.5, 40, 'images/bullet_sheet.png')
