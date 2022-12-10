@@ -110,8 +110,8 @@ class Tank(pygame.sprite.Sprite):
                     sheet.subsurface(pygame.Rect(frame_location, self.rect.size))
 
     def get_position_and_angle_for_bullet(self):
-        x_for_bullet = self.x + 1 * self.rect.width / 2 * cos(self.angle * pi / 180)
-        y_for_bullet = self.y + 1 * -self.rect.height / 2 * sin(self.angle * pi / 180)
+        x_for_bullet = self.x + 1.5 * self.rect.width / 2 * cos(self.angle * pi / 180)
+        y_for_bullet = self.y + 1.5 * -self.rect.height / 2 * sin(self.angle * pi / 180)
         return self.angle, x_for_bullet, y_for_bullet
 
     def already_reloaded(self):
